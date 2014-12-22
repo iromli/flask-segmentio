@@ -5,6 +5,8 @@ from __future__ import unicode_literals
 
 from analytics import Client
 
+from ._meta import __version__  # noqa
+
 
 class SegmentIO(object):
     def __init__(self, app=None):
@@ -60,7 +62,7 @@ class SegmentIO(object):
         return self.client.screen(*args, **kwargs)
 
     def flush(self):
-        return self.client.flush()
+        self.client.flush()
 
     def _on_error(self, exc, batch):
         pass
