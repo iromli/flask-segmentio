@@ -5,4 +5,8 @@ flask-segmentio
     :alt: license
     :target: https://github.com/iromli/flask_segmentio/blob/master/LICENSE
 
-[WIP] Adds Segment support to your Flask app.
+.. image:: https://img.shields.io/codeship/53818670-6d23-0132-dc7b-261dee642691.svg?style=flat-square&label=codeship
+    :alt: Codeship status
+    :target: https://codeship.com/projects/54180
+
+Adds Segment support to your Flask app.
