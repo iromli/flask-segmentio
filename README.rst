@@ -1,4 +1,4 @@
-flask_segmentio
+flask-segmentio
 ~~~~~~~~~~~~~~~
 
 .. image:: http://img.shields.io/badge/license-MIT-green.svg?style=flat-square
