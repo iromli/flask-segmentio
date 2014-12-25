@@ -4,14 +4,20 @@ Flask-SegmentIO
 
 Adds SegmentIO support to your Flask application.
 """
+import re
 from setuptools import setup
 
-from flask_segmentio._meta import __version__
+
+# Get version without importing, which avoids dependency issues
+def get_version():
+    with open("flask_segmentio/_meta.py") as f:
+        return re.search(r"""__version__\s+=\s+(['"])(?P<version>.+?)\1""",
+                         f.read()).group('version')
 
 
 setup(
     name="flask-segmentio",
-    version=__version__,
+    version=get_version(),
     url="http://github.com/iromli/flask-segmentio",
     license="MIT",
     author="Isman Firmansyah",

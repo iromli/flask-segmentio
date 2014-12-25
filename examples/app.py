@@ -6,7 +6,7 @@ from __future__ import unicode_literals
 import os
 
 from flask import Flask
-from flask_segmentio.client import SegmentIO
+from flask_segmentio import SegmentIO
 
 SEGMENTIO_WRITE_KEY = os.environ.get("SEGMENTIO_WRITE_KEY", "")
 

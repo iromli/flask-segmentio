@@ -19,7 +19,7 @@ def app(request):
 
 @pytest.fixture(scope="session")
 def analytics(app):
-    from flask_segmentio.client import SegmentIO
+    from flask_segmentio import SegmentIO
 
     analytics = SegmentIO(app)
     return analytics
@@ -27,7 +27,8 @@ def analytics(app):
 
 @pytest.fixture()
 def unitialized():
-    from flask_segmentio.client import SegmentIO
+    from flask_segmentio import SegmentIO
+
     analytics = SegmentIO()
     return analytics
 
