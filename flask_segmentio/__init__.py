@@ -3,9 +3,9 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
-from analytics import Client
+__version__ = "0.1.0-dev"
 
-from ._meta import __version__  # noqa
+from analytics import Client
 
 
 class SegmentIO(object):
