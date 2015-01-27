@@ -6,6 +6,10 @@
     :alt: Codeship status
     :target: https://codeship.com/projects/54180
 
+.. image:: https://img.shields.io/pypi/v/flask-segmentio.svg
+    :alt: flask-segmentio on PyPI
+    :target: https://pypi.python.org/pypi/flask-segmentio
+
 flask-segmentio
 ~~~~~~~~~~~~~~~
 
