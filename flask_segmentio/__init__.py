@@ -6,6 +6,7 @@ from __future__ import unicode_literals
 __version__ = "0.2.0-dev"
 
 from analytics import Client
+from flask import _app_ctx_stack
 
 
 class SegmentIO(object):
@@ -66,25 +67,21 @@ class SegmentIO(object):
 
         app.extensions = getattr(app, "extensions", {})
         app.extensions["segmentio"] = self
-        self.app = app
 
     @property
     def client(self):
         """Returns a cached object of Segment client. It's worth noting
         that accsessing this property without having a proper initialization
         step will raise an error."""
-        assert self.app is not None, \
-            "The segmentio extension was not registered " \
-            "to the current application. Please make sure " \
-            "to call init_app() first."
+        app = self._get_app()
 
         if self._client is None:
             self._client = Client(
-                self.app.config["SEGMENTIO_WRITE_KEY"],
-                debug=self.app.config["SEGMENTIO_DEBUG"],
-                send=self.app.config["SEGMENTIO_SEND"],
+                app.config["SEGMENTIO_WRITE_KEY"],
+                debug=app.config["SEGMENTIO_DEBUG"],
+                send=app.config["SEGMENTIO_SEND"],
                 on_error=self._on_error,
-                max_queue_size=self.app.config["SEGMENTIO_MAX_QUEUE_SIZE"],
+                max_queue_size=app.config["SEGMENTIO_MAX_QUEUE_SIZE"],
                 )
         return self._client
 
@@ -145,3 +142,15 @@ class SegmentIO(object):
 
     def _on_error(self, exc, batch):
         pass
+
+    def _get_app(self):
+        if self.app:
+            return self.app
+
+        ctx = _app_ctx_stack.top
+        if ctx:
+            return ctx.app
+
+        raise RuntimeError("application not registered on segmentio "
+                           "instance and no application bound "
+                           "to current context")

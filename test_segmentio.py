@@ -39,9 +39,9 @@ def test_client_initialized(analytics):
 
 
 def test_client_unitialized(unitialized):
-    with pytest.raises(AssertionError) as exc:
+    with pytest.raises(RuntimeError) as exc:
         unitialized.track("johndoe", "commented")
-    assert "init_app()" in str(exc.value)
+        assert "context" in str(exc.value)
 
 
 def test_init_app(app, analytics):
